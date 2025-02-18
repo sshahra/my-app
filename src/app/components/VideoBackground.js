@@ -18,8 +18,8 @@ const Video = styled('video')(({ theme }) => ({
   left: 0,
   minWidth: '100%',
   minHeight: '100%',
-  width: 'auto',
-  height: 'auto',
+  width: '100%',
+  height: '100%',
   objectFit: 'cover',
 }));
 
