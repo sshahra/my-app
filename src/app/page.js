@@ -22,14 +22,13 @@ export default function Home() {
   const isMobile = window.innerWidth <= 768;
   const borderRight = isMobile ? "none" : "3px solid rgba(255, 255, 255, 0.3)";
   
-  const count = Math.floor(Math.random() * 100); // Random number for demo purposes
+  const count = Math.floor(Math.random() * 10); // Random number for demo purposes
   const videoSrc = count % 2 === 0 ? "back2.mp4" : "back.mp4";
 
   return (
     <Box sx={{ height: "100vh" }}>
       <VideoBackground
         src={videoSrc}
-
         sx={{
           "& video": { filter: "brightness(0.8)" },
         }}
@@ -93,7 +92,7 @@ export default function Home() {
                     marginBottom: "20px",
                   }}
                 >
-                  Invest-In-Box
+                  Invest-In-Box 
                 </Typography>
                 <Button
                   variant="outlined"
