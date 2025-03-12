@@ -1,7 +1,7 @@
 // components/LandingPage.js
 "use client";
 import React from 'react';
-import { Grid, Typography, Button, Icon, Avatar, Stack } from "@mui/material";
+import { Grid, Typography, Button, Icon, Avatar, Stack, Box } from "@mui/material";
 
 const features = [
   {
@@ -144,6 +144,12 @@ export default function LandingPage({ isMobile, onGetStarted }) {
   const borderRight = isMobile ? "none" : "3px solid rgba(255, 255, 255, 0.3)";
 
   return (
+    <Box
+      sx={{
+        padding: isMobile ? "30px" : "70px",
+      }}>
+
+    
     <Grid
       container
       spacing={6}
@@ -161,5 +167,6 @@ export default function LandingPage({ isMobile, onGetStarted }) {
         isMobile={isMobile}
       />
     </Grid>
+    </Box>
   );
 }

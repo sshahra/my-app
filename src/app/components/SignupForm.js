@@ -9,7 +9,7 @@ import Stack from '@mui/material/Stack';
 const styles = {    
     color: "white",}
 
-export default function SignupForm({ onBack }) {
+export default function SignupForm({ onBack , onSubmit }) {
   const [formData, setState] = useState({
     fullName: '',
     email: '',
@@ -28,6 +28,9 @@ export default function SignupForm({ onBack }) {
     e.preventDefault();
     // Add your form submission logic here
     console.log('Form submitted:', formData);
+    //move to next page
+     
+    
   };
 
 const textFieldStyles = {
@@ -82,19 +85,16 @@ const inputStyles = {
 
 return (
     <Box
-        component="form"
-        onSubmit={handleSubmit}
-        //alignItems={"center"}
-        sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 2,
-            width: '100%',
-            padding: '10px'
-            
-        }}
-
-    >
+            component="form"
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 2,
+              width: '100%',
+              padding: '0px',
+              //maxHeight: '100%',
+            }}
+          >
         
       <Stack 
       direction="row" 
@@ -202,7 +202,10 @@ return (
             type="submit"
             variant="outlined"
             size="small"
+            onClick={onSubmit}
             sx={{
+                //ADD SOME SPACE BETWEEN BUTTONS
+                marginTop: "40px",
                 color: "white",
                 fontWeight: "bold",
                 borderRadius: "10px",
@@ -212,6 +215,7 @@ return (
                     backgroundColor: "rgba(82, 82, 82, 0.5)",
                 },
             }}
+            
         >
             Submit
         </Button>
