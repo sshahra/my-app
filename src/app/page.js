@@ -26,7 +26,7 @@ export default function Home() {
         <VideoBackground
           src={`/back0.mp4`}
           sx={{
-            "& video": { filter: "brightness(0.8)" },
+            "& video": { filter: "brightness(1)" },
           }}
         >
           <Box

@@ -1,0 +1,61 @@
+// pages/api/user/stocks.js
+import { query } from '../../../lib/db';
+
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ message: 'Method not allowed' });
+  }
+
+  try {
+    const { userEmail, stocks } = req.body;
+
+    // Validate required fields
+    if (!userEmail || !stocks || !Array.isArray(stocks) || stocks.length === 0) {
+      return res.status(400).json({ message: 'Missing or invalid required fields' });
+    }
+
+    // Process each stock
+    const results = await Promise.all(stocks.map(async (stock) => {
+      // Insert stock data to UserStocks table
+      return await query(
+        `INSERT INTO UserStocks (
+          UserEmail, 
+          StockName, 
+          _52WeekHigh, 
+          _52WeekLow, 
+          CurrentPrice,
+          MarketCap,
+          PERatio,
+          DividendYield,
+          EPS,
+          Volume,
+          Beta,
+          Sector
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        [
+          userEmail,
+          stock.stockName,
+          stock._52WeekHigh || null,
+          stock._52WeekLow || null,
+          stock.currentPrice || null,
+          stock.marketCap || null,
+          stock.peRatio || null,
+          stock.dividendYield || null,
+          stock.eps || null,
+          stock.volume || null,
+          stock.beta || null,
+          stock.sector || null
+        ]
+      );
+    }));
+
+    // Return success response
+    return res.status(200).json({ 
+      message: 'User stocks saved successfully',
+      count: results.length
+    });
+  } catch (error) {
+    console.error('Save stocks error:', error);
+    return res.status(500).json({ message: 'Database error', error: error.message });
+  }
+}

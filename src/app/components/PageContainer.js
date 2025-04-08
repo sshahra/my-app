@@ -82,7 +82,7 @@ export default function PageContainer({ isMobile }) {
   return (
     <Box
       sx={{
-        backgroundColor: "rgba(0, 0, 0, 0.9)",
+        backgroundColor: "rgba(0, 0, 0, 0.6)",
         padding: "50px",
         height: "90vh",
         borderRadius: "20px",
